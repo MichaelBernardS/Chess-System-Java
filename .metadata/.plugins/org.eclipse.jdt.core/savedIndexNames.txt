@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\Michael Bernard\Desktop\Cursos\Java\chess-system\.metadata\.plugins\org.eclipse.jdt.core
+591744942.index
+76716079.index
+1865797976.index
