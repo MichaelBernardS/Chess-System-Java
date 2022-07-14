@@ -7,4 +7,4 @@ Single-line\\\ comment=0,0,0,0,0,85,110,117
 Single\\\ quoted\\\ string=0,0,0,0,0,40,161,152
 Type=0,0,0,0,0,197,108,29
 eclipse.preferences.version=1
-overriddenByCSS=,Double\\ quoted\\ string,Multi-line\\ comment,Single-line\\ comment,Single\\ quoted\\ string,Identifier,Keyword,Others,Type,
+overriddenByCSS=,Double\\ quoted\\ string,Identifier,Keyword,Multi-line\\ comment,Others,Single-line\\ comment,Single\\ quoted\\ string,Type,

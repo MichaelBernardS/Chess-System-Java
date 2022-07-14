@@ -4,11 +4,12 @@ public class Board {
 	
 	private int rows;
 	private int columns;
-	private Piece[][] pieces;
+	private Piece[][] pieces; // declarado uma matriz de peças;
+	
 	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
-		pieces = new Piece[rows][columns];
+		pieces = new Piece[rows][columns]; // matriz de peças instanciada no construtor;
 	}
 	public int getRows() {
 		return rows;
@@ -29,5 +30,10 @@ public class Board {
 	
 	public Piece piece(Position position) {
 		return pieces[position.getRow()][position.getColumn()];
+	}
+	
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece; // pegando a matriz na posição dada e atribuindo a peça informada;
+		piece.position = position; // peça não está mais na posição NULA, está nesta posição informada; conseguimos acessar livremente a peça, pois a mesma foi declarada como protected no mesmo pacote;
 	}
 }
