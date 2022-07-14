@@ -1,0 +1,18 @@
+package boardgame;
+
+public class BoardException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+	
+	public BoardException(String msg) {
+		super(msg);
+	}
+	
+	private boolean positionExists(int row, int column) { 
+		row >= 0 && row < rows && column >= 0 && column < columns; // rows = altura do tabuleiro;
+	}
+	
+	public boolean positionExists(Position position) {
+		
+	}
+	
+}

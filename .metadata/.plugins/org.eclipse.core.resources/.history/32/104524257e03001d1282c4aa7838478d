@@ -53,9 +53,6 @@ public class Board {
 	}
 	
 	public boolean thereIsAPiece(Position position) {
-		if (!positionExists(position)) { // antes de testar o thereisapiece ele já testa se a posição existe, se não existir ele já para e lança uma exceção;
-			throw new BoardException("Position not on the board");
-		}
 		return piece(position) != null;
 	}
 }

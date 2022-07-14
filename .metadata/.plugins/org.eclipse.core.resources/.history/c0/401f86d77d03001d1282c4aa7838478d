@@ -37,9 +37,6 @@ public class Board {
 	}
 	
 	public void placePiece(Piece piece, Position position) {
-		if (thereIsAPiece(position)) {
-			throw new BoardException("There is already a piece on position" + position);
-		}
 		pieces[position.getRow()][position.getColumn()] = piece; // pegando a matriz na posição dada e atribuindo a peça informada;
 		piece.position = position; // peça não está mais na posição NULA, está nesta posição informada; conseguimos acessar livremente a peça, pois a mesma foi declarada como protected no mesmo pacote;
 	}
@@ -53,9 +50,6 @@ public class Board {
 	}
 	
 	public boolean thereIsAPiece(Position position) {
-		if (!positionExists(position)) { // antes de testar o thereisapiece ele já testa se a posição existe, se não existir ele já para e lança uma exceção;
-			throw new BoardException("Position not on the board");
-		}
 		return piece(position) != null;
 	}
 }
