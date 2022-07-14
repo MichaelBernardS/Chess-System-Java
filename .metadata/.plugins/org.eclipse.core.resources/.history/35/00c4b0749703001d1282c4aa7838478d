@@ -1,10 +1,9 @@
 package application;
 
 import chess.ChessPiece;
-import chess.Color;
 
 public class UI {
-
+	
 	// cores especiais para ser impresso no console;
 	// cores de texto
 
@@ -17,7 +16,7 @@ public class UI {
 	public static final String ANSI_PURPLE = "\u001B[35m";
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
-
+	
 	// cores do fundo;
 
 	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
@@ -44,12 +43,9 @@ public class UI {
 		if (piece == null) {
 			System.out.print("-");
 		} else {
-			if (piece.getColor() == Color.WHITE) {
-				System.out.print(ANSI_WHITE + piece + ANSI_RESET); // ansi reset para resetar a cor;
-			} else {
-				System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
-			}
+			System.out.print(piece);
 		}
 		System.out.print(" ");
 	}
+
 }
