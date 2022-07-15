@@ -53,10 +53,8 @@ public class UI {
 		}
 	}
 	
-	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
-		printBoard(chessMatch.getPieces()); // impressão do tabuleiro
-		System.out.println();
-		printCapturedPieces(captured); // imprimir as peças capturadas
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
 		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
@@ -104,13 +102,7 @@ public class UI {
 		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList()); // feita a lista, filtrando pela cor;
 		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
 		System.out.println("Captured pieces:");
-		System.out.print("White: ");
-		System.out.print(ANSI_WHITE);
-		System.out.println(Arrays.toString(white.toArray())); // Jeito padrão de imprimir um Array de valores no Java;
-		System.out.print(ANSI_RESET);
-		System.out.print("Black: ");
-		System.out.print(ANSI_YELLOW);
-		System.out.println(Arrays.toString(black.toArray()));
-		System.out.print(ANSI_RESET);
+		System.out.println("White: ");
+		System.out.println(Arrays.toString(white.toArray()));
 	}
 }

@@ -15,8 +15,8 @@ public class ChessMatch {
 	private Color currentPlayer;
 	private Board board;
 	
-	private List<Piece> piecesOnTheBoard = new ArrayList<>();
-	private List<Piece> capturedPieces = new ArrayList<>();
+	private List<ChessPiece> piecesOnTheBoard = new ArrayList<>();
+	private List<ChessPiece>
 	
 	public ChessMatch() {
 		board = new Board(8, 8); // na hora q iniciar a partida, cria um tabuleiro 8 por 8;
@@ -63,11 +63,6 @@ public class ChessMatch {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
-		
-		if (capturedPiece != null) { // se for diferente de nulo quer dizer que capturou a peça, então tem que remover da lista de peças do tabuleiro e colocar na outra lista;
-			piecesOnTheBoard.remove(capturedPiece);
-			capturedPieces.add(capturedPiece);
-		}
 		return capturedPiece;
 	}
 	
@@ -96,7 +91,6 @@ public class ChessMatch {
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition()); // operação de colocar peça, passando a posição nas coordenadas do xadrez e não da matriz;
-		piecesOnTheBoard.add(piece); // toda  vez que colocar uma peça no tabuleiro, adicionar na lista peças do tabuleiro tb;
 	}
 	
 	private void initialSetup() {
