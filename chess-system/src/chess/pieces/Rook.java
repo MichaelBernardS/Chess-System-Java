@@ -23,42 +23,42 @@ public class Rook extends ChessPiece {
 		Position p = new Position(0, 0);
 		
 		// above
-		p.setValues(position.getRow() -1 , position.getColumn()); // position = posição da peça, atributo da classe Piece;
+		p.setValues(position.getRow() - 1, position.getColumn()); // position = posição da peça, atributo da classe Piece;
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() -1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
+			p.setRow(p.getRow() - 1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
 		// left
-		p.setValues(position.getRow(), position.getColumn() -1); // position = posição da peça, atributo da classe Piece;
+		p.setValues(position.getRow(), position.getColumn() - 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() -1); // agora a coluna que vai andar;
+			p.setColumn(p.getColumn() -1); 
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { 
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
 		// right
-		p.setValues(position.getRow(), position.getColumn() +1); // position = posição da peça, atributo da classe Piece;
+		p.setValues(position.getRow(), position.getColumn() + 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() +1);
+			p.setColumn(p.getColumn() + 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
 		// below
-		p.setValues(position.getRow() +1 , position.getColumn()); // position = posição da peça, atributo da classe Piece;
+		p.setValues(position.getRow() + 1 , position.getColumn()); 
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() +1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
+			p.setRow(p.getRow() + 1);
 		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { 
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		return mat;
