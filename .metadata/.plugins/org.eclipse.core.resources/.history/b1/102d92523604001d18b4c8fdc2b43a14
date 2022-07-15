@@ -19,16 +19,4 @@ public abstract class Piece {
 	public boolean possibleMove(Position position) {
 		return possibleMoves()[position.getRow()][position.getColumn()]; // método concreto, retornando um método abstrato; chamado de Hook Methods;
 	}
-	
-	public boolean isThereAnyPossibleMove() {
-		boolean[][] mat = possibleMoves();
-		for (int i=0; i<mat.length; i++) {
-			for (int j=0; j<mat.length; j++) { // length no j, pois estamos presumindo que a matriz do xadrez é quadrara;
-				if (mat[i][j]) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 }
