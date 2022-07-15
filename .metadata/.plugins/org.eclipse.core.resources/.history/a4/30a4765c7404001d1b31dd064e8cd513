@@ -49,7 +49,6 @@ public class ChessMatch {
 		validateSourcePosition(source); // essa operação vai ser responsável por validar a posição de origem; verificando se não existe uma peça na posição de origem;
 		validateTargetPosition(source, target); // e a validação da posição de destino;
 		Piece capturedPiece = makeMove(source, target);
-		nextTurn(); // trocagem de turno;
 		return (ChessPiece)capturedPiece;
 	}
 	
@@ -64,9 +63,6 @@ public class ChessMatch {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position");
 		}
-		if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) { // validação p verificar a cor da peça, para não poder mover a peça do adversário; downcasing p identificar q é do chesspiece;
-			throw new ChessException("The chosen piece is not yours");
-		}
 		if (!board.piece(position).isThereAnyPossibleMove()) { // verificando se tem algum movimento possível; se não tiver nenhum movimento possível, a msg aparecerá;
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
@@ -76,11 +72,6 @@ public class ChessMatch {
 		if (!board.piece(source).possibleMove(target)) {// testando se: para a peça de origem, a posiçao de destino n é um movimento possivel, significa q n pode mexer p lá;
 			throw new ChessException("The chosen piece can't move to target position");
 		}
-	}
-	
-	private void nextTurn() {
-		turn ++;
-		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; // expressão condicional ternária; se o jogador atual for o color.white, então agora ele vai ser o color.black, caso contrário, ele vai ser o color.white;
 	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {

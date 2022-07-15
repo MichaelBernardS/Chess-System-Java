@@ -80,7 +80,7 @@ public class ChessMatch {
 	
 	private void nextTurn() {
 		turn ++;
-		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; // expressão condicional ternária; se o jogador atual for o color.white, então agora ele vai ser o color.black, caso contrário, ele vai ser o color.white;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; // expressão condicional ternária;
 	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
