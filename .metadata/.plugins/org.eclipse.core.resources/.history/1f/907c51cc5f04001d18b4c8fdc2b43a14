@@ -51,9 +51,7 @@ public class ChessMatch {
 	}
 	
 	private void validateTargetPosition(Position source, Position target) {
-		if (!board.piece(source).possibleMove(target)); {// testando se: para a peça de origem, a posiçao de destino n é um movimento possivel, significa q n pode mexer p lá;
-			throw new ChessException("The chosen piece can't move to target position");
-		}
+		if (!board.piece(source).possibleMove(target));
 	}
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {

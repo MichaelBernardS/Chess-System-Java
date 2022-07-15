@@ -26,7 +26,7 @@ public class Rook extends ChessPiece {
 		p.setValues(position.getRow() -1 , position.getColumn()); // position = posição da peça, atributo da classe Piece;
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() -1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
+			p.setRow(p.getRow() - 1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
 			mat[p.getRow()][p.getColumn()] = true;
@@ -47,16 +47,6 @@ public class Rook extends ChessPiece {
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setColumn(p.getColumn() +1);
-		}
-		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
-			mat[p.getRow()][p.getColumn()] = true;
-		}
-		
-		// below
-		p.setValues(position.getRow() +1 , position.getColumn()); // position = posição da peça, atributo da classe Piece;
-		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
-			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() +1); // fazer com que se repita a subida da torre até a condição ser true; anda uma casa em toda repetição;
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { // para comer a peça, se tiver;
 			mat[p.getRow()][p.getColumn()] = true;
