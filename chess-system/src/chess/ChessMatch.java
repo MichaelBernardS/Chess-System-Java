@@ -2,6 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import boardgame.Board;
 import boardgame.Piece;
@@ -14,6 +15,7 @@ public class ChessMatch {
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
+	private boolean check;
 	
 	private List<Piece> piecesOnTheBoard = new ArrayList<>();
 	private List<Piece> capturedPieces = new ArrayList<>();
@@ -31,6 +33,10 @@ public class ChessMatch {
 	
 	public Color getCurrentPlayer() {
 		return currentPlayer;
+	}
+	
+	public boolean getCheck() {
+		return check;
 	}
 	
 	public ChessPiece[][] getPieces() {
@@ -55,6 +61,14 @@ public class ChessMatch {
 		validateSourcePosition(source); // essa operação vai ser responsável por validar a posição de origem; verificando se não existe uma peça na posição de origem;
 		validateTargetPosition(source, target); // e a validação da posição de destino;
 		Piece capturedPiece = makeMove(source, target);
+		
+		if (testCheck(currentPlayer)) {
+			undoMove(source, target, capturedPiece);
+			throw new ChessException("You can't put yourself in check");
+		}
+		
+		check = (testCheck(opponent(currentPlayer))) ? true : false; // condicional ternária para verificar se  a partida está em cheque; se sim, é vdd, se não, é falso;
+		
 		nextTurn(); // trocagem de turno;
 		return (ChessPiece)capturedPiece;
 	}
@@ -69,6 +83,17 @@ public class ChessMatch {
 			capturedPieces.add(capturedPiece);
 		}
 		return capturedPiece;
+	}
+	
+	private void undoMove(Position source, Position target, Piece capturedPiece) { // função para desfazer o movimento, caso o jogador realize um movimento que faça cheque em si mesmo;
+		Piece p = board.removePiece(target); // tira aquela peça que moveu do destino;
+		board.placePiece(p, source);// devolver a peça pra posição de origem;
+		
+		if (capturedPiece != null) {	
+			board.placePiece(capturedPiece, target);
+			capturedPieces.remove(capturedPiece);
+			piecesOnTheBoard.add(capturedPiece);
+		}
 	}
 	
 	private void validateSourcePosition(Position position) {
@@ -94,9 +119,35 @@ public class ChessMatch {
 		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; // expressão condicional ternária; se o jogador atual for o color.white, então agora ele vai ser o color.black, caso contrário, ele vai ser o color.white;
 	}
 	
+	private Color opponent(Color color) {
+		return (color == Color.WHITE) ? Color.BLACK : Color.WHITE; // se esta cor passada como argumento for white, então retorna o black, caso contrário, retornará white;
+	}
+	
+	private ChessPiece king(Color color) { // função p achar o rei do oponente; função para dar check;
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList()); // toda peça x, tal que (->) a cor dessa peça x seja da cor passada como argumento; porém, a lista é Piece, e Piece não tem cor, então faremos um downcasting para ChessPiece;
+		for (Piece p : list) {
+			if (p instanceof King) {
+				return (ChessPiece)p;
+			}
+		}
+		throw new IllegalStateException("There is no " + color + " king on the board"); // se essa msg aparecer, significa que o programa está quebrado, pois só foi adicionada esta exceção, para o compilador não reclamar e retornar algum valor, independente se achar ou não o rei na lista;
+	}
+	
+	private boolean testCheck(Color color) {
+		Position kingPosition = king(color).getChessPosition().toPosition(); // puxar o rei no formato de matriz;
+		List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList());
+		for (Piece p : opponentPieces) {
+			boolean[][] mat = p.possibleMoves();
+			if (mat[kingPosition.getRow()][kingPosition.getColumn()]) { // se a posição for true, é check;
+				return true;
+			}
+		}
+		return false; // testando o check, caso dê falso no laço for inteiro, quer dizer que não está em check;
+	}
+	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition()); // operação de colocar peça, passando a posição nas coordenadas do xadrez e não da matriz;
-		piecesOnTheBoard.add(piece); // toda  vez que colocar uma peça no tabuleiro, adicionar na lista peças do tabuleiro tb;
+		piecesOnTheBoard.add(piece); // toda vez que colocar uma peça no tabuleiro, adicionar na lista peças do tabuleiro tb;
 	}
 	
 	private void initialSetup() {
