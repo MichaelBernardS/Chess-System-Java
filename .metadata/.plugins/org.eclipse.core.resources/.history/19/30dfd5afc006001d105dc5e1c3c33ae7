@@ -76,11 +76,9 @@ public class ChessMatch {
 		
 		if (testCheck(opponent(currentPlayer))) {
 			checkMate = true;
-		} 
-		else {
-			nextTurn(); // trocagem de turno;
+		} else {
+		nextTurn(); // trocagem de turno;
 		}
-		
 		return (ChessPiece)capturedPiece;
 	}
 	

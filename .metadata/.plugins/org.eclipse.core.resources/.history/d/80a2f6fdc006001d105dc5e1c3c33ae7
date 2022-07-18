@@ -18,7 +18,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
 
-		while (!chessMatch.getCheckMate()) { // enqnt a partida não estiver c checkmate, ela continua;
+		while (true) {
 			try {
 				UI.clearScreen();
 				UI.printMatch(chessMatch, captured); // função p imprimir as peças dessa partida; UI = User Interface; E passa a lista de peças capturadas;
@@ -48,7 +48,5 @@ public class Program {
 				sc.nextLine();
 			}
 		}
-		UI.clearScreen();
-		UI.printMatch(chessMatch, captured);
 	}
 }

@@ -74,13 +74,7 @@ public class ChessMatch {
 		
 		check = (testCheck(opponent(currentPlayer))) ? true : false; // condicional ternária para verificar se  a partida está em cheque; se sim, é vdd, se não, é falso;
 		
-		if (testCheck(opponent(currentPlayer))) {
-			checkMate = true;
-		} 
-		else {
-			nextTurn(); // trocagem de turno;
-		}
-		
+		nextTurn(); // trocagem de turno;
 		return (ChessPiece)capturedPiece;
 	}
 	
@@ -162,21 +156,7 @@ public class ChessMatch {
 		}
 		List <Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList()); // forma de pegar tds as peças desta cor;
 		for (Piece p : list) {
-			boolean[][] mat = p.possibleMoves();
-			for (int i=0; i<board.getRows(); i++) {
-				for (int j=0; j<board.getColumns(); j++) {
-					if (mat[i][j]) { // lógica: mover a peça pra posição p sair do check, se continuar ainda em check, quer dizer q é checkmate;
-						Position source = ((ChessPiece)p).getChessPosition().toPosition();
-						Position target = new Position(i, j);
-						Piece capturedPiece = makeMove(source, target);
-						boolean testCheck = testCheck(color); // testar se o rei da minha cor, ainda está em check;
-						undoMove(source, target, capturedPiece); // desfazer o movimento que fez para testar se estava em check;
-						if (!testCheck) {
-							return false;
-						}
-					}
-				}
-			}
+			return false;
 		}
 		return true;
 	}

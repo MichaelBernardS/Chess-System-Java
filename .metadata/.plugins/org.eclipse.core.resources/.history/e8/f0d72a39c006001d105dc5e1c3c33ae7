@@ -74,13 +74,7 @@ public class ChessMatch {
 		
 		check = (testCheck(opponent(currentPlayer))) ? true : false; // condicional ternária para verificar se  a partida está em cheque; se sim, é vdd, se não, é falso;
 		
-		if (testCheck(opponent(currentPlayer))) {
-			checkMate = true;
-		} 
-		else {
-			nextTurn(); // trocagem de turno;
-		}
-		
+		nextTurn(); // trocagem de turno;
 		return (ChessPiece)capturedPiece;
 	}
 	
@@ -170,10 +164,6 @@ public class ChessMatch {
 						Position target = new Position(i, j);
 						Piece capturedPiece = makeMove(source, target);
 						boolean testCheck = testCheck(color); // testar se o rei da minha cor, ainda está em check;
-						undoMove(source, target, capturedPiece); // desfazer o movimento que fez para testar se estava em check;
-						if (!testCheck) {
-							return false;
-						}
 					}
 				}
 			}
