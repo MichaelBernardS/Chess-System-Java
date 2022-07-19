@@ -32,7 +32,7 @@ public abstract class ChessPiece extends Piece {
 	}
 	
 	public ChessPosition getChessPosition() {
-		return ChessPosition.fromPosition(position); // position da classse Piece, convertendo pra classe chessPosition
+		return ChessPosition.fromPosition(position); // position da classse Piece, convertendo pra classe chessPosition; método estático fromposition converte para a posição de xadrez;
 	}
 	
 	protected boolean isThereOpponentPiece(Position position) { // protected pq queremos que ela seja acessível somente por este pacote e pelas subclasses (peças);
