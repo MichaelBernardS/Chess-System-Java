@@ -191,7 +191,9 @@ public class ChessMatch {
 				else {
 					pawnPosition = new Position(4, target.getColumn());
 				}
-				board.placePiece(pawn, pawnPosition); // realizando manualmente a posição do peão para a posição antes de ser capturado;
+				capturedPiece = board.removePiece(pawnPosition);
+				capturedPieces.add(capturedPiece);
+				piecesOnTheBoard.remove(capturedPiece);
 			}
 		}
 	}
