@@ -130,19 +130,15 @@ public class ChessMatch {
 		Piece p = board.removePiece(pos);
 		piecesOnTheBoard.remove(p);
 		
-		ChessPiece newPiece = newPiece(type, promoted.getColor());
-		board.placePiece(newPiece, pos);
-		piecesOnTheBoard.add(newPiece);
 		
-		return newPiece;
 		
 	}
 	
-	private ChessPiece newPiece(String type, Color color) { // método auxiliar para instanciar a peça que foi colocada no promoted;
+	private ChessPiece newPiece(String type, Color color) { // método auxiliar para substituir a peça que foi colocada no promoted;
 		if (type.equals("B")) return new Bishop(board, color);
 		if (type.equals("N")) return new Knight(board, color);
 		if (type.equals("Q")) return new Queen(board, color);
-		return new Rook(board, color); // se falhou tds acima, cm crtz vai ser uma torre;
+		if (type.equals("R")) return new Rook(board, color);
 	}
 	
 	private Piece makeMove(Position source, Position target) {
