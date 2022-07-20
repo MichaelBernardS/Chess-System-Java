@@ -93,23 +93,13 @@ public class King extends ChessPiece {
 		
 		// #specialmove castling
 		if (getMoveCount() == 0 && !chessMatch.getCheck()) {
-			// #specialmove castling kingside rook (roque pequeno)
+			// #specialmove castling kingside rook (roque menor)
 			Position posT1 = new Position(position.getRow(), position.getColumn() + 3);
 			if (testRookCastling(posT1)) {
 				Position p1 = new Position(position.getRow(), position.getColumn() + 1); // casinha a direita do rei;
-				Position p2 = new Position(position.getRow(), position.getColumn() + 2); // duas a direita;
-				if (getBoard().piece(p1) == null && getBoard().piece(p2) == null) { // caso não haja peça;
-					mat[position.getRow()][position.getColumn() + 2] = true; // significa que o rei pode mover 2 casas a direita;
-				}
-			}
-			// #specialmove castling queenside rook (roque grande)
-			Position posT2 = new Position(position.getRow(), position.getColumn() - 4); // 4 a esquerda do rei;
-			if (testRookCastling(posT2)) {
-				Position p1 = new Position(position.getRow(), position.getColumn() - 1);
-				Position p2 = new Position(position.getRow(), position.getColumn() - 2);
-				Position p3 = new Position(position.getRow(), position.getColumn() - 3);
-				if (getBoard().piece(p1) == null && getBoard().piece(p2) == null && getBoard().piece(p3) == null) { 
-					mat[position.getRow()][position.getColumn() - 2] = true; 
+				Position p2 = new Position(position.getRow(), position.getColumn() + 2); // duas a direita
+				if (getBoard().pieec(p1) == null && getBoard().piece(p2) == null) {
+					mat[position.getRow()][position.getColumn() + 2] = true;
 				}
 			}
 		}
