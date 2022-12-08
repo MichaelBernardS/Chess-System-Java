@@ -30,7 +30,7 @@ Este projeto é uma aplicação Java, utilizando a ferramenta Git Bash para a im
 
 ```bash
 # clonar repositório
-git clone https://github.com/MichaelBernardS/workshop-spring3-jpa.git
+git clone https://github.com/MichaelBernardS/Chess-System-Java.git
 ```
 
 # Autor
